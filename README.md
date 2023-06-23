@@ -50,5 +50,4 @@ SELECT * FROM supplier_order
 WHERE ratio_delta(supplier_order.invoiced_total, supplier_order.expected_total, 0, 0, 0, 0) > 0.05;
 ```
 
-
-
+Make sure to have a look at the issues on GitHub!
