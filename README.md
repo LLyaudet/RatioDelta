@@ -7,7 +7,14 @@ We do know that Knuth can safely apply his advice, whilst for mere mortals the a
 
 Here is a potential implementation with error handling for PostgreSQL:
 ```sql
-CREATE FUNCTION ratio_delta(a double precision, b double precision, both_null double precision DEFAULT NULL, a_null double precision DEFAULT NULL, b_null double precision DEFAULT NULL, b_zero double precision DEFAULT NULL) RETURNS double precision AS $$
+CREATE FUNCTION ratio_delta(
+  a double precision,
+  b double precision,
+  both_null double precision DEFAULT NULL,
+  a_null double precision DEFAULT NULL,
+  b_null double precision DEFAULT NULL,
+  b_zero double precision DEFAULT NULL
+) RETURNS double precision AS $$
     SELECT CASE
       WHEN a is NULL and b is NULL THEN both_null
       WHEN a is NULL THEN a_null
@@ -16,6 +23,13 @@ CREATE FUNCTION ratio_delta(a double precision, b double precision, both_null do
       ELSE a/b - 1 
     END
 $$ LANGUAGE SQL;
+
+-- Test it
+SELECT ratio_delta(1, 2);
+SELECT ratio_delta(NULL, NULL, -100, -101, -102, -103);
+SELECT ratio_delta(NULL, 2, -100, -101, -102, -103);
+SELECT ratio_delta(1, NULL, -100, -101, -102, -103);
+SELECT ratio_delta(1, 0, -100, -101, -102, -103);
 ```
 
 
