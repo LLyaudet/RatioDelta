@@ -16,9 +16,9 @@ CREATE FUNCTION ratio_delta(
   b_zero double precision DEFAULT NULL
 ) RETURNS double precision AS $$
     SELECT CASE
-      WHEN a is NULL and b is NULL THEN both_null
-      WHEN a is NULL THEN a_null
-      WHEN b is NULL THEN b_null
+      WHEN a IS NULL AND b IS NULL THEN both_null
+      WHEN a IS NULL THEN a_null
+      WHEN b IS NULL THEN b_null
       WHEN b = 0 THEN b_zero
       ELSE a/b - 1 
     END
@@ -51,3 +51,54 @@ WHERE ratio_delta(supplier_order.invoiced_total, supplier_order.expected_total, 
 ```
 
 Make sure to have a look at the issues on GitHub!
+
+## Variants
+
+The word we propose can easily be combined with the following:
+
+- absolute ratio-delta: abs(a/b - 1)
+- ratio-delta percent: (a/b - 1) * 100
+- absolute ratio-delta percent: abs(a/b - 1) * 100
+
+Moreover, you can add rounding.
+You can obtain a synthetic function with (too) many arguments like:
+```sql
+CREATE FUNCTION ratio_delta(
+  a double precision,
+  b double precision,
+  is_absolute boolean DEFAULT FALSE,
+  is_percent boolean DEFAULT FALSE,
+  round_to smallint DEFAULT NULL,
+  both_null double precision DEFAULT NULL,
+  a_null double precision DEFAULT NULL,
+  b_null double precision DEFAULT NULL,
+  b_zero double precision DEFAULT NULL
+) RETURNS double precision AS $$
+    SELECT CASE
+      WHEN a IS NULL and b IS NULL THEN both_null
+      WHEN a IS NULL THEN a_null
+      WHEN b IS NULL THEN b_null
+      WHEN b = 0 THEN b_zero
+      WHEN is_absolute AND is_percent AND round_to IS NOT NULL THEN round(abs(a/b - 1) * 100, round_to)
+      WHEN is_absolute AND is_percent THEN abs(a/b - 1) * 100
+      WHEN is_absolute AND round_to IS NOT NULL THEN round(abs(a/b - 1), round_to)
+      WHEN is_percent AND round_to IS NOT NULL THEN round((a/b - 1) * 100, round_to)
+      WHEN is_absolute THEN abs(a/b - 1)
+      WHEN is_percent THEN (a/b - 1) * 100
+      WHEN round_to IS NOT NULL THEN round(a/b - 1, round_to)
+      ELSE a/b - 1 
+    END
+$$ LANGUAGE SQL;
+```
+It will factorize your code and be completely "flexible".
+But I do not know a way to specialize and inline it to be efficient in SQL.
+You can still do, for example:
+```sql
+CREATE FUNCTION absolute_rounded_ratio_delta(
+  a double precision,
+  b double precision,
+  round_to smallint DEFAULT NULL,
+) RETURNS double precision AS $$
+    SELECT ratio_delta(a, b, TRUE, FALSE, round_to, 0, 0, 0)
+$$ LANGUAGE SQL;
+```
