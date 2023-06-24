@@ -102,3 +102,32 @@ CREATE FUNCTION absolute_rounded_ratio_delta(
     SELECT ratio_delta(a, b, TRUE, FALSE, round_to, 0, 0, 0)
 $$ LANGUAGE SQL;
 ```
+
+The "full-feature" function can be slightly optimized (less branching) and generalized with a "scale" argument instead of "is_percent":
+```sql
+CREATE FUNCTION ratio_delta(
+  a double precision,
+  b double precision,
+  is_absolute boolean DEFAULT FALSE,
+  scale double precision DEFAULT 1,
+  round_to smallint DEFAULT NULL,
+  both_null double precision DEFAULT NULL,
+  a_null double precision DEFAULT NULL,
+  b_null double precision DEFAULT NULL,
+  b_zero double precision DEFAULT NULL
+) RETURNS double precision AS $$
+    SELECT CASE
+      WHEN a IS NULL and b IS NULL THEN both_null
+      WHEN a IS NULL THEN a_null
+      WHEN b IS NULL THEN b_null
+      WHEN b = 0 THEN b_zero
+      WHEN is_absolute AND round_to IS NOT NULL THEN round(abs(a/b - 1) * scale, round_to)
+      WHEN is_absolute THEN abs(a/b - 1) * scale
+      WHEN round_to IS NOT NULL THEN round((a/b - 1) * scale, round_to)
+      ELSE (a/b - 1) * scale
+    END
+$$ LANGUAGE SQL;
+```
+But again, it would be nice if the SQL interpreter knows to drop the multiplication if scale is the constant 1.
+
+
