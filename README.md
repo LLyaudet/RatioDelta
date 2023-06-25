@@ -1,9 +1,11 @@
 # RatioDelta
-An unknown but somewhat common arithmetic operation
+An unknown? but somewhat common arithmetic operation
 
 In accounting, it is common to compute (a/b - 1), or (a/b - 1) * 100 if you want percents.
 Following Knuth's advice "Name and conquer", we give the name ratio-delta to the binary operation a/b - 1.
 We do know that Knuth can safely apply his advice, whilst for mere mortals the answer is mostly "Don't piss me off with your fancy name." ;)
+
+If you think relative error, you're right but read-on :)
 
 Here is a potential implementation with error handling for PostgreSQL:
 ```sql
@@ -99,7 +101,7 @@ CREATE FUNCTION absolute_rounded_ratio_delta(
   b double precision,
   round_to smallint DEFAULT NULL,
 ) RETURNS double precision AS $$
-    SELECT ratio_delta(a, b, TRUE, FALSE, round_to, 0, 0, 0)
+    SELECT ratio_delta(a, b, TRUE, FALSE, round_to, 0, 0, 0, 0)
 $$ LANGUAGE SQL;
 ```
 
@@ -129,5 +131,54 @@ CREATE FUNCTION ratio_delta(
 $$ LANGUAGE SQL;
 ```
 But again, it would be nice if the SQL interpreter knows to drop the multiplication if scale is the constant 1.
+
+## Relative error
+
+Ratio-delta is closely related to relative error which is most of the time "absolute ratio-delta": abs(a/b - 1) = abs((a-b)/b),
+where a is the approximation and b is the exact value: <https://en.wikipedia.org/wiki/Approximation_error>.
+Sometimes the term (signed) relative error denotes the ratio-delta: <https://mathworld.wolfram.com/RelativeError.html>.
+But the term absolute relative error would be ambiguous with absolute error abs(a-b).
+Moreover the term relative error is not neutral and is domain specific (error analysis domain),
+instead of denoting what is done.
+
+```sql
+CREATE FUNCTION absolute_rounded_ratio_delta(
+  a double precision,
+  b double precision,
+  round_to smallint DEFAULT NULL,
+) RETURNS double precision AS $$
+    SELECT ratio_delta(a, b, TRUE, 1, round_to, 0, 0, 0, 0)
+$$ LANGUAGE SQL;
+```
+
+is the same as:
+
+```sql
+CREATE FUNCTION rounded_relative_error(
+  a double precision,
+  b double precision,
+  round_to smallint DEFAULT NULL,
+) RETURNS double precision AS $$
+    SELECT ratio_delta(a, b, TRUE, 1, round_to, 0, 0, 0, 0)
+$$ LANGUAGE SQL;
+```
+
+This detour from accounting to relative error via a new name was the opportunity to give you SQL functions for it,
+and see that no major database has a function for (signed) relative error:
+- <https://www.postgresql.org/docs/current/functions-math.html>
+- <https://mariadb.com/kb/en/numeric-functions/>
+- <https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html>
+- <https://docs.oracle.com/cd/E49933_01/server.770/es_eql/src/ceql_functions_numeric.html>
+- <https://learn.microsoft.com/en-us/sql/odbc/reference/appendixes/numeric-functions?view=sql-server-ver16>
+
+There also does not seem to have any CPU architecture that has instructions for (signed) relative error.
+
+We use relative error by hand to analyze the properties of floating-point numbers,
+but there is no shortcut to analyze relative errors in significant hardware and software.
+
+The fact is that error handling made it useful for us to define such functions in SQL.
+It would probably be a good thing that it is available for more software parts like databases.
+And even maybe it would yield significant optimization with hardware.
+
 
 
