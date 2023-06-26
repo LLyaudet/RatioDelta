@@ -5,7 +5,7 @@ In accounting, it is common to compute (a/b - 1), or (a/b - 1) * 100 if you want
 Following Knuth's advice "Name and conquer", we give the name ratio-delta to the binary operation a/b - 1.
 We do know that Knuth can safely apply his advice, whilst for mere mortals the answer is mostly "Don't piss me off with your fancy name." ;)
 
-If you think relative error, you're right but read-on :)
+If you think relative error, fused divide-add, or fused divide-subtract, you're right but read-on :)
 
 Here is a potential implementation with error handling for PostgreSQL:
 ```sql
@@ -180,5 +180,78 @@ The fact is that error handling made it useful for us to define such functions i
 It would probably be a good thing that it is available for more software parts like databases.
 And even maybe it would yield significant optimization with hardware.
 
+## Other uses
 
+I asked a friend of mine if he saw any use in physics.
+He told me:
+"Not later than last week, I was using it with variable offset
+for a Laser Doppler vibrometer <https://en.wikipedia.org/wiki/Laser_Doppler_vibrometer>.
+For each frequency f, I had to compute:
 
+Normalized displacement corrected for each frequency = Measured displacement / applied tension - measure offset
+
+<=> |H(f)| = abs(D(f) / U(f) - Offset (f))
+
+It is frequent for measuring devices:
+
+H = (A / B - O)*G
+
+Default Offset O=1
+
+Default gain G=100
+"
+
+Let's continue to name and conquer, and call:
+
+- ratio-offset when an offset is applied positively or negatively to a ratio,
+- ratio-alpha when a unit offset is added a/b + 1,
+- ratio-beta when a variable offset is added (it is a ternary operation a/b + c),
+- ratio-delta when a unit offset is subtracted,
+- ratio-sigma when a variable offset is subtracted (it is a ternary operation a/b - c),
+- absolute... when we take the absolute value,
+- rounded... when we round the result,
+- scaled... when a scale/gain is applied.
+
+For hardware, the topic of ratio-beta and ratio-sigma has been addressed in academic papers on fused divide-add:
+- https://ieeexplore.ieee.org/abstract/document/5451057
+- https://ieeexplore.ieee.org/document/5349981
+- https://ieeexplore.ieee.org/abstract/document/7280029
+
+It was already envisionned in 1994:
+- https://www.researchgate.net/profile/Michael-Flynn-7/publication/3043776_Design_issues_in_division_and_other_floating-point_operations/links/5467be1a0cf2f5eb18036e1e/Design-issues-in-division-and-other-floating-point-operations.pdf
+
+But we could not check if someone linked explicitely relative error with fused divide-add.
+(A paper about fused divide-add/subtract can talk about relative error as a tool to analyze the fused divide-add/subtract method,
+without noting that the relative error can be computing by a fused divide-subtract
+and we do not have access to most of full-texts on the subject.)
+
+But it does not seem to be in current Instruction Set Architectures:
+
+- <https://cdrdv2.intel.com/v1/dl/getContent/671110>
+- <https://developer.arm.com/documentation/ddi0602/2023-03/SIMD-FP-Instructions?lang=en>
+
+With dedicated function in software, it may be easier to use dedicated hardware if it exists one day.
+
+## Voltage divider, and beyond?
+
+If we look at ratio-alpha (a/b) + 1,
+when you have a voltage divider (<https://en.wikipedia.org/wiki/Voltage_divider>)
+with two resistors, the coefficient applied to tension is (Z2/(Z1+Z2)) = 1 / (Z1/Z2 + 1).
+Thus, we could, but probably should not, add:
+
+- inverted... when you take the inverse of it.
+
+And the coefficient in a voltage divider is inverted ratio-alpha, for example.
+But it is clearly not the most efficient way to compute it.
+And if we look at the variable offset versions of it:
+
+- inverted ratio-beta: 1/(a/b + c) = 1/((a + bc)/b) = b/(a + bc),
+- inverted ratio-sigma: 1/(a/b - c) = 1/((a - bc)/b) = b/(a - bc),
+
+we can see the fused multiply-add a + bc = bc + a,
+but we cannot see the fused multiply-subtract a - bc != bc - a
+<https://www.ibm.com/docs/en/aix/7.1?topic=set-fmsub-fms-floating-multiply-subtract-instruction>.
+We do not know if there may be uses for fused multiply-subtract of type 2 a - bc on top of fused multiply-subtract of type 1 bc - a.
+
+Other uses of ratio-alpha appears with differential and operational amplifiers,
+see <https://www.electronique-et-informatique.fr/anglais/Amplificateur_differentiel.php> for example.
