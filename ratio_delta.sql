@@ -116,10 +116,10 @@ CREATE FUNCTION ratio_alpha(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, 1), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, 1)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, 1), round_to)
-    ELSE scaled_fused_divide_add(a, b, 1)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, 1, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, 1, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, 1, scale), round_to)
+    ELSE scaled_fused_divide_add(a, b, 1, scale)
   END
 $$ LANGUAGE SQL;
 
@@ -139,10 +139,10 @@ CREATE FUNCTION ratio_delta(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, 1), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, 1)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, 1), round_to)
-    ELSE scaled_fused_divide_subtract(a, b, 1)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, 1, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, 1, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, 1, scale), round_to)
+    ELSE scaled_fused_divide_subtract(a, b, 1, scale)
   END
 $$ LANGUAGE SQL;
 
@@ -171,10 +171,10 @@ CREATE FUNCTION ratio_beta(
     WHEN b IS NULL THEN b_null
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, c), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, c)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, c), round_to)
-    ELSE scaled_fused_divide_add(a, b, c)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, c, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, c, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, c, scale), round_to)
+    ELSE scaled_fused_divide_add(a, b, c, scale)
   END
 $$ LANGUAGE SQL;
 
@@ -203,9 +203,9 @@ CREATE FUNCTION ratio_sigma(
     WHEN b IS NULL THEN b_null
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, c), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, c)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, c), round_to)
-    ELSE scaled_fused_divide_subtract(a, b, c)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, c, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, c, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, c, scale), round_to)
+    ELSE scaled_fused_divide_subtract(a, b, c, scale)
   END
 $$ LANGUAGE SQL;
