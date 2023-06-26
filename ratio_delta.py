@@ -117,6 +117,97 @@ def scaled_fused_absolute_divide_subtract(
   """
   return abs(a/b - c) * scale
 
+def fused_divide_increment(
+  a: float,
+  b: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return (a/b + 1)
+
+
+def fused_divide_decrement(
+  a: float,
+  b: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return (a/b - 1)
+
+
+def fused_absolute_divide_increment(
+  a: float,
+  b: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return abs(a/b + 1)
+
+
+def fused_absolute_divide_decrement(
+  a: float,
+  b: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return abs(a/b - 1)
+
+
+def scaled_fused_divide_increment(
+  a: float,
+  b: float,
+  scale: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return (a/b + 1) * scale
+
+
+def scaled_fused_divide_decrement(
+  a: float,
+  b: float,
+  scale: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return (a/b - 1) * scale
+
+
+def scaled_fused_absolute_divide_increment(
+  a: float,
+  b: float,
+  scale: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return abs(a/b + 1) * scale
+
+
+def scaled_fused_absolute_divide_decrement(
+  a: float,
+  b: float,
+  scale: float,
+) -> float:
+  """
+  It should be inlined.
+  Maybe one day it will be a single assembly operation.
+  """
+  return abs(a/b - 1) * scale
+
 
 def ratio_alpha(
   a: float,
@@ -138,9 +229,9 @@ def ratio_alpha(
   if b == 0:
     return b_zero
   if is_absolute:
-    result = scaled_fused_absolute_divide_add(a, b, 1, scale)
+    result = scaled_fused_absolute_divide_increment(a, b, scale)
   else:
-    result = scaled_fused_divide_add(a, b, 1, scale)
+    result = scaled_fused_divide_increment(a, b, scale)
   if round_to is not None:
     return round(result, round_to)
   return result
@@ -166,9 +257,9 @@ def ratio_delta(
   if b == 0:
     return b_zero
   if is_absolute:
-    result = scaled_fused_absolute_divide_subtract(a, b, 1, scale)
+    result = scaled_fused_absolute_divide_decrement(a, b, scale)
   else:
-    result = scaled_fused_divide_subtract(a, b, 1, scale)
+    result = scaled_fused_divide_decrement(a, b, scale)
   if round_to is not None:
     return round(result, round_to)
   return result
