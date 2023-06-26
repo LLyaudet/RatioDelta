@@ -223,10 +223,10 @@ Default gain G=100
 Let's continue to name and conquer, and call:
 
 - ratio-offset when an offset is applied positively or negatively to a ratio,
-- ratio-alpha when a unit offset is added a/b + 1,
-- ratio-beta when a variable offset is added (it is a ternary operation a/b + c),
-- ratio-delta when a unit offset is subtracted,
-- ratio-sigma when a variable offset is subtracted (it is a ternary operation a/b - c),
+- ratio-iota when a unit offset is added a/b + 1 (iota as increment),
+- ratio-alpha when a variable offset is added (alpha as add, it is a ternary operation a/b + c),
+- ratio-delta when a unit offset is subtracted (delta as decrement, I have been lucky with my initial choice),
+- ratio-sigma when a variable offset is subtracted (sigma as subtract, it is a ternary operation a/b - c),
 - absolute... when we take the absolute value,
 - rounded... when we round the result,
 - scaled... when a scale/gain is applied.

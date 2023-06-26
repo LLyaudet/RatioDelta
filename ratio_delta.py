@@ -209,7 +209,7 @@ def scaled_fused_absolute_divide_decrement(
     return abs(a/b - 1) * scale
 
 
-def ratio_alpha(
+def ratio_iota(
     a: float,
     b: float,
     is_absolute: bool = False,
@@ -265,7 +265,7 @@ def ratio_delta(
     return result
 
 
-def ratio_beta(
+def ratio_alpha(
     a: float,
     b: float,
     c: float,

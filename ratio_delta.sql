@@ -177,7 +177,7 @@ CREATE FUNCTION scaled_fused_absolute_divide_decrement(
 $$ LANGUAGE SQL;
 
 
-CREATE FUNCTION ratio_alpha(
+CREATE FUNCTION ratio_iota(
   a double precision,
   b double precision,
   is_absolute boolean DEFAULT FALSE,
@@ -223,7 +223,7 @@ CREATE FUNCTION ratio_delta(
   END
 $$ LANGUAGE SQL;
 
-CREATE FUNCTION ratio_beta(
+CREATE FUNCTION ratio_alpha(
   a double precision,
   b double precision,
   c double precision,
