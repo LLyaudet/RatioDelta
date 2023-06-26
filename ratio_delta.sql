@@ -100,6 +100,83 @@ CREATE FUNCTION scaled_fused_absolute_divide_subtract(
   SELECT abs(a/b - c) * scale
 $$ LANGUAGE SQL;
 
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION fused_divide_increment(
+  a double precision,
+  b double precision
+) RETURNS double precision AS $$
+  SELECT (a/b + 1)
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION fused_divide_decrement(
+  a double precision,
+  b double precision
+) RETURNS double precision AS $$
+  SELECT (a/b - 1)
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION fused_absolute_divide_increment(
+  a double precision,
+  b double precision
+) RETURNS double precision AS $$
+  SELECT abs(a/b + 1)
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION fused_absolute_divide_decrement(
+  a double precision,
+  b double precision
+) RETURNS double precision AS $$
+  SELECT abs(a/b - 1)
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION scaled_fused_divide_increment(
+  a double precision,
+  b double precision,
+  scale double precision
+) RETURNS double precision AS $$
+  SELECT (a/b + 1) * scale
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION scaled_fused_divide_decrement(
+  a double precision,
+  b double precision,
+  scale double precision
+) RETURNS double precision AS $$
+  SELECT (a/b - 1) * scale
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION scaled_fused_absolute_divide_increment(
+  a double precision,
+  b double precision,
+  scale double precision
+) RETURNS double precision AS $$
+  SELECT abs(a/b + 1) * scale
+$$ LANGUAGE SQL;
+
+-- It should be inlined.
+-- Maybe one day it will be a single assembly operation.
+CREATE FUNCTION scaled_fused_absolute_divide_decrement(
+  a double precision,
+  b double precision,
+  scale double precision
+) RETURNS double precision AS $$
+  SELECT abs(a/b - 1) * scale
+$$ LANGUAGE SQL;
+
+
 CREATE FUNCTION ratio_alpha(
   a double precision,
   b double precision,
@@ -116,10 +193,10 @@ CREATE FUNCTION ratio_alpha(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, 1, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, 1, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, 1, scale), round_to)
-    ELSE scaled_fused_divide_add(a, b, 1, scale)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_increment(a, b, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_increment(a, b, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_increment(a, b, scale), round_to)
+    ELSE scaled_fused_divide_increment(a, b, scale)
   END
 $$ LANGUAGE SQL;
 
@@ -139,10 +216,10 @@ CREATE FUNCTION ratio_delta(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, 1, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, 1, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, 1, scale), round_to)
-    ELSE scaled_fused_divide_subtract(a, b, 1, scale)
+    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_decrement(a, b, scale), round_to)
+    WHEN is_absolute THEN scaled_fused_absolute_divide_decrement(a, b, scale)
+    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_decrement(a, b, scale), round_to)
+    ELSE scaled_fused_divide_decrement(a, b, scale)
   END
 $$ LANGUAGE SQL;
 
