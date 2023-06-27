@@ -263,14 +263,14 @@ With dedicated function in software, it may be easier to use dedicated hardware 
 
 ## Voltage divider, and beyond?
 
-If we look at ratio-alpha (a/b) + 1,
+If we look at ratio-iota (a/b) + 1,
 when you have a voltage divider (<https://en.wikipedia.org/wiki/Voltage_divider>)
 with two resistors, the coefficient applied to tension is (Z2/(Z1+Z2)) = 1 / (Z1/Z2 + 1).
 Thus, we could, but probably should not, add:
 
 - inverted... when you take the inverse of it.
 
-And the coefficient in a voltage divider is inverted ratio-alpha, for example.
+And the coefficient in a voltage divider is inverted ratio-iota, for example.
 But it is clearly not the most efficient way to compute it.
 And if we look at the variable offset versions of it:
 
@@ -282,7 +282,7 @@ but we cannot see the fused multiply-subtract a - bc != bc - a
 <https://www.ibm.com/docs/en/aix/7.1?topic=set-fmsub-fms-floating-multiply-subtract-instruction>.
 We do not know if there may be uses for fused multiply-subtract of type 2 a - bc on top of fused multiply-subtract of type 1 bc - a.
 
-Other uses of ratio-alpha appears with differential and operational amplifiers,
+Other uses of ratio-iota appears with differential and operational amplifiers,
 see <https://www.electronique-et-informatique.fr/anglais/Amplificateur_differentiel.php> for example.
 
 ## Source code
