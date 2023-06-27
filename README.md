@@ -241,6 +241,16 @@ Let's continue to name and conquer, and call:
 - rounded... when we round the result,
 - scaled... when a scale/gain is applied.
 
+Just in case, if someone does not know or if it hurts someone:
+
+- "add a to b" corresponds to "a + b",
+- "increment a by b" corresponds to "a := a + b".
+
+Hence, yes I'm slightly abusing semantics since most increments in source code happens to be increments by 1.
+And it is handy to distinguish between "a + b" and "a + 1" (or between "a := a + b" and "a := a + 1"),
+by using "increment" when the second operand is 1 and "add" when the second operand is variable.
+I'm not the first to use this trick, and will probably not be the last ;).
+
 For hardware, the topic of ratio-alpha and ratio-sigma has been addressed in academic papers on fused divide-add:
 - https://ieeexplore.ieee.org/abstract/document/5451057
 - https://ieeexplore.ieee.org/document/5349981
