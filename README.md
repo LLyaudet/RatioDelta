@@ -41,7 +41,7 @@ CREATE FUNCTION ratio_delta(
       WHEN a IS NULL THEN a_null
       WHEN b IS NULL THEN b_null
       WHEN b = 0 THEN b_zero
-      ELSE a/b - 1 
+      ELSE a/b - 1
     END
 $$ LANGUAGE SQL;
 
@@ -107,7 +107,7 @@ CREATE FUNCTION ratio_delta(
       WHEN is_absolute THEN abs(a/b - 1)
       WHEN is_percent THEN (a/b - 1) * 100
       WHEN round_to IS NOT NULL THEN round(a/b - 1, round_to)
-      ELSE a/b - 1 
+      ELSE a/b - 1
     END
 $$ LANGUAGE SQL;
 ```
@@ -220,6 +220,16 @@ Default Offset O=1
 Default gain G=100
 "
 
+"
+Another more frequent example is in impedancemetry,
+
+Z(f) = U(f) / I(f)
+
+but, in practice, you must calibrate your device
+
+Z_corrected := U_measured / I_measured - Z_calibration
+"
+
 Let's continue to name and conquer, and call:
 
 - ratio-offset when an offset is applied positively or negatively to a ratio,
@@ -231,7 +241,7 @@ Let's continue to name and conquer, and call:
 - rounded... when we round the result,
 - scaled... when a scale/gain is applied.
 
-For hardware, the topic of ratio-beta and ratio-sigma has been addressed in academic papers on fused divide-add:
+For hardware, the topic of ratio-alpha and ratio-sigma has been addressed in academic papers on fused divide-add:
 - https://ieeexplore.ieee.org/abstract/document/5451057
 - https://ieeexplore.ieee.org/document/5349981
 - https://ieeexplore.ieee.org/abstract/document/7280029
@@ -264,7 +274,7 @@ And the coefficient in a voltage divider is inverted ratio-alpha, for example.
 But it is clearly not the most efficient way to compute it.
 And if we look at the variable offset versions of it:
 
-- inverted ratio-beta: 1/(a/b + c) = 1/((a + bc)/b) = b/(a + bc),
+- inverted ratio-alpha: 1/(a/b + c) = 1/((a + bc)/b) = b/(a + bc),
 - inverted ratio-sigma: 1/(a/b - c) = 1/((a - bc)/b) = b/(a - bc),
 
 we can see the fused multiply-add a + bc = bc + a,

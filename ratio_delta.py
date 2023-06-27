@@ -219,7 +219,7 @@ def ratio_iota(
     a_null: float = None,
     b_null: float = None,
     b_zero: float = None,
-) -> float: 
+) -> float:
     if a is None:
         if b is None:
             return both_null
