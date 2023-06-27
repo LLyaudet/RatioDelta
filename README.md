@@ -246,7 +246,7 @@ Just in case, if someone does not know or if it hurts someone:
 - "add a to b" corresponds to "a + b",
 - "increment a by b" corresponds to "a := a + b".
 
-Hence, yes I'm slightly abusing semantics since most increments in source code happens to be increments by 1.
+Hence, yes I'm slightly abusing semantics since most increments in source code happen to be increments by 1.
 And it is handy to distinguish between "a + b" and "a + 1" (or between "a := a + b" and "a := a + 1"),
 by using "increment" when the second operand is 1 and "add" when the second operand is variable.
 I'm not the first to use this trick, and will probably not be the last ;).
@@ -261,7 +261,7 @@ It was already envisionned in 1994:
 
 But we could not check if someone linked explicitely relative error with fused divide-add.
 (A paper about fused divide-add/subtract can talk about relative error as a tool to analyze the fused divide-add/subtract method,
-without noting that the relative error can be computing by a fused divide-subtract
+without noting that the relative error can be computed by a fused divide-subtract
 and we do not have access to most of full-texts on the subject.)
 
 But it does not seem to be in current Instruction Set Architectures:
