@@ -8,7 +8,7 @@
 |     **An unknown? but somewhat common arithmetic operation**     |
 
 This library is available for the following languages:
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta/Python/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta//tree/main/Python)
 
 
 In accounting, it is common to compute (a/b - 1),
