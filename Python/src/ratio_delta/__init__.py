@@ -14,8 +14,10 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with RatioDelta.    If not, see <http://www.gnu.org/licenses/>.
 
-©Copyright 2023 Laurent Lyaudet
+©Copyright 2023-2024 Laurent Lyaudet
 """
+
+from typing import Optional
 
 
 def fused_divide_add(
@@ -27,7 +29,7 @@ def fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b + c)
+    return a / b + c
 
 
 def fused_divide_subtract(
@@ -39,7 +41,7 @@ def fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b - c)
+    return a / b - c
 
 
 def fused_absolute_divide_add(
@@ -51,7 +53,7 @@ def fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b + c)
+    return abs(a / b + c)
 
 
 def fused_absolute_divide_subtract(
@@ -63,7 +65,7 @@ def fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b - c)
+    return abs(a / b - c)
 
 
 def scaled_fused_divide_add(
@@ -76,7 +78,7 @@ def scaled_fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b + c) * scale
+    return (a / b + c) * scale
 
 
 def scaled_fused_divide_subtract(
@@ -89,7 +91,7 @@ def scaled_fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b - c) * scale
+    return (a / b - c) * scale
 
 
 def scaled_fused_absolute_divide_add(
@@ -102,7 +104,7 @@ def scaled_fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b + c) * scale
+    return abs(a / b + c) * scale
 
 
 def scaled_fused_absolute_divide_subtract(
@@ -115,7 +117,8 @@ def scaled_fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b - c) * scale
+    return abs(a / b - c) * scale
+
 
 def fused_divide_increment(
     a: float,
@@ -125,7 +128,7 @@ def fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b + 1)
+    return a / b + 1
 
 
 def fused_divide_decrement(
@@ -136,7 +139,7 @@ def fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b - 1)
+    return a / b - 1
 
 
 def fused_absolute_divide_increment(
@@ -147,7 +150,7 @@ def fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b + 1)
+    return abs(a / b + 1)
 
 
 def fused_absolute_divide_decrement(
@@ -158,7 +161,7 @@ def fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b - 1)
+    return abs(a / b - 1)
 
 
 def scaled_fused_divide_increment(
@@ -170,7 +173,7 @@ def scaled_fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b + 1) * scale
+    return (a / b + 1) * scale
 
 
 def scaled_fused_divide_decrement(
@@ -182,7 +185,7 @@ def scaled_fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return (a/b - 1) * scale
+    return (a / b - 1) * scale
 
 
 def scaled_fused_absolute_divide_increment(
@@ -194,7 +197,7 @@ def scaled_fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b + 1) * scale
+    return abs(a / b + 1) * scale
 
 
 def scaled_fused_absolute_divide_decrement(
@@ -206,20 +209,24 @@ def scaled_fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-    return abs(a/b - 1) * scale
+    return abs(a / b - 1) * scale
 
 
+# pylint: disable-next=too-many-arguments,too-many-return-statements
 def ratio_iota(
-    a: float,
-    b: float,
+    a: Optional[float],
+    b: Optional[float],
     is_absolute: bool = False,
     scale: float = 1,
-    round_to: int = None,
-    both_null: float = None,
-    a_null: float = None,
-    b_null: float = None,
-    b_zero: float = None,
-) -> float:
+    round_to: Optional[int] = None,
+    both_null: Optional[float] = None,
+    a_null: Optional[float] = None,
+    b_null: Optional[float] = None,
+    b_zero: Optional[float] = None,
+) -> Optional[float]:
+    """
+    Divide and increment, and more if affinity.
+    """
     if a is None:
         if b is None:
             return both_null
@@ -237,17 +244,21 @@ def ratio_iota(
     return result
 
 
+# pylint: disable-next=too-many-arguments,too-many-return-statements
 def ratio_delta(
-    a: float,
-    b: float,
-    is_absolute boolean = False,
+    a: Optional[float],
+    b: Optional[float],
+    is_absolute: bool = False,
     scale: float = 1,
-    round_to: int = None,
-    both_null: float = None,
-    a_null: float = None,
-    b_null: float = None,
-    b_zero: float = None,
-) -> float:
+    round_to: Optional[int] = None,
+    both_null: Optional[float] = None,
+    a_null: Optional[float] = None,
+    b_null: Optional[float] = None,
+    b_zero: Optional[float] = None,
+) -> Optional[float]:
+    """
+    Divide and decrement, and more if affinity.
+    """
     if a is None:
         if b is None:
             return both_null
@@ -265,22 +276,26 @@ def ratio_delta(
     return result
 
 
+# pylint: disable-next=too-many-arguments,too-many-return-statements
 def ratio_alpha(
-    a: float,
-    b: float,
-    c: float,
-    is_absolute boolean = False,
+    a: Optional[float],
+    b: Optional[float],
+    c: Optional[float],
+    is_absolute: bool = False,
     scale: float = 1,
-    round_to: int = None,
-    all_null: float = None,
-    a_b_null: float = None,
-    a_c_null: float = None,
-    b_c_null: float = None,
-    a_null: float = None,
-    b_null: float = None,
-    c_null: float = None,
-    b_zero: float = None,
-) -> float:
+    round_to: Optional[int] = None,
+    all_null: Optional[float] = None,
+    a_b_null: Optional[float] = None,
+    a_c_null: Optional[float] = None,
+    b_c_null: Optional[float] = None,
+    a_null: Optional[float] = None,
+    b_null: Optional[float] = None,
+    c_null: Optional[float] = None,
+    b_zero: Optional[float] = None,
+) -> Optional[float]:
+    """
+    Divide and add, and more if affinity.
+    """
     if a is None:
         if b is None:
             if c is None:
@@ -306,22 +321,26 @@ def ratio_alpha(
     return result
 
 
+# pylint: disable-next=too-many-arguments,too-many-return-statements
 def ratio_sigma(
-    a: float,
-    b: float,
-    c: float,
-    is_absolute boolean = False,
+    a: Optional[float],
+    b: Optional[float],
+    c: Optional[float],
+    is_absolute: bool = False,
     scale: float = 1,
-    round_to: int = None,
-    all_null: float = None,
-    a_b_null: float = None,
-    a_c_null: float = None,
-    b_c_null: float = None,
-    a_null: float = None,
-    b_null: float = None,
-    c_null: float = None,
-    b_zero: float = None,
-) -> float:
+    round_to: Optional[int] = None,
+    all_null: Optional[float] = None,
+    a_b_null: Optional[float] = None,
+    a_c_null: Optional[float] = None,
+    b_c_null: Optional[float] = None,
+    a_null: Optional[float] = None,
+    b_null: Optional[float] = None,
+    c_null: Optional[float] = None,
+    b_zero: Optional[float] = None,
+) -> Optional[float]:
+    """
+    Divide and subtract, and more if affinity.
+    """
     if a is None:
         if b is None:
             if c is None:

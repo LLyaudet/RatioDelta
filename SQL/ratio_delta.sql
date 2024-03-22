@@ -1,8 +1,10 @@
 -- This file is part of RatioDelta library.
 
--- RatioDelta is free software: you can redistribute it and/or modify
--- it under the terms of the GNU Lesser General Public License as published by
--- the Free Software Foundation, either version 3 of the License, or
+-- RatioDelta is free software:
+-- you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License
+-- as published by the Free Software Foundation,
+-- either version 3 of the License, or
 -- (at your option) any later version.
 
 -- RatioDelta is distributed in the hope that it will be useful,
@@ -10,10 +12,11 @@
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 -- GNU Lesser General Public License for more details.
 
--- You should have received a copy of the GNU Lesser General Public License
--- along with RatioDelta.  If not, see <http://www.gnu.org/licenses/>.
+-- You should have received a copy of the
+-- GNU Lesser General Public License along with RatioDelta.
+-- If not, see <http://www.gnu.org/licenses/>.
 
--- ©Copyright 2023 Laurent Lyaudet
+-- ©Copyright 2023-2024 Laurent Lyaudet
 
 
 -- It should be inlined.
@@ -26,6 +29,7 @@ CREATE FUNCTION fused_divide_add(
   SELECT (a/b + c)
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION fused_divide_subtract(
@@ -35,6 +39,7 @@ CREATE FUNCTION fused_divide_subtract(
 ) RETURNS double precision AS $$
   SELECT (a/b - c)
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -46,6 +51,7 @@ CREATE FUNCTION fused_absolute_divide_add(
   SELECT abs(a/b + c)
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION fused_absolute_divide_subtract(
@@ -55,6 +61,7 @@ CREATE FUNCTION fused_absolute_divide_subtract(
 ) RETURNS double precision AS $$
   SELECT abs(a/b - c)
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -67,6 +74,7 @@ CREATE FUNCTION scaled_fused_divide_add(
   SELECT (a/b + c) * scale
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION scaled_fused_divide_subtract(
@@ -77,6 +85,7 @@ CREATE FUNCTION scaled_fused_divide_subtract(
 ) RETURNS double precision AS $$
   SELECT (a/b - c) * scale
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -89,6 +98,7 @@ CREATE FUNCTION scaled_fused_absolute_divide_add(
   SELECT abs(a/b + c) * scale
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION scaled_fused_absolute_divide_subtract(
@@ -100,6 +110,7 @@ CREATE FUNCTION scaled_fused_absolute_divide_subtract(
   SELECT abs(a/b - c) * scale
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION fused_divide_increment(
@@ -108,6 +119,7 @@ CREATE FUNCTION fused_divide_increment(
 ) RETURNS double precision AS $$
   SELECT (a/b + 1)
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -118,6 +130,7 @@ CREATE FUNCTION fused_divide_decrement(
   SELECT (a/b - 1)
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION fused_absolute_divide_increment(
@@ -127,6 +140,7 @@ CREATE FUNCTION fused_absolute_divide_increment(
   SELECT abs(a/b + 1)
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION fused_absolute_divide_decrement(
@@ -135,6 +149,7 @@ CREATE FUNCTION fused_absolute_divide_decrement(
 ) RETURNS double precision AS $$
   SELECT abs(a/b - 1)
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -146,6 +161,7 @@ CREATE FUNCTION scaled_fused_divide_increment(
   SELECT (a/b + 1) * scale
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION scaled_fused_divide_decrement(
@@ -156,6 +172,7 @@ CREATE FUNCTION scaled_fused_divide_decrement(
   SELECT (a/b - 1) * scale
 $$ LANGUAGE SQL;
 
+
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
 CREATE FUNCTION scaled_fused_absolute_divide_increment(
@@ -165,6 +182,7 @@ CREATE FUNCTION scaled_fused_absolute_divide_increment(
 ) RETURNS double precision AS $$
   SELECT abs(a/b + 1) * scale
 $$ LANGUAGE SQL;
+
 
 -- It should be inlined.
 -- Maybe one day it will be a single assembly operation.
@@ -193,12 +211,19 @@ CREATE FUNCTION ratio_iota(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_increment(a, b, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_increment(a, b, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_increment(a, b, scale), round_to)
+    WHEN is_absolute AND round_to IS NOT NULL
+     THEN round(
+       scaled_fused_absolute_divide_increment(a, b, scale),
+       round_to
+     )
+    WHEN is_absolute
+     THEN scaled_fused_absolute_divide_increment(a, b, scale)
+    WHEN round_to IS NOT NULL
+     THEN round(scaled_fused_divide_increment(a, b, scale), round_to)
     ELSE scaled_fused_divide_increment(a, b, scale)
   END
 $$ LANGUAGE SQL;
+
 
 CREATE FUNCTION ratio_delta(
   a double precision,
@@ -216,12 +241,19 @@ CREATE FUNCTION ratio_delta(
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_decrement(a, b, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_decrement(a, b, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_decrement(a, b, scale), round_to)
+    WHEN is_absolute AND round_to IS NOT NULL
+     THEN round(
+       scaled_fused_absolute_divide_decrement(a, b, scale),
+       round_to
+     )
+    WHEN is_absolute
+     THEN scaled_fused_absolute_divide_decrement(a, b, scale)
+    WHEN round_to IS NOT NULL
+     THEN round(scaled_fused_divide_decrement(a, b, scale), round_to)
     ELSE scaled_fused_divide_decrement(a, b, scale)
   END
 $$ LANGUAGE SQL;
+
 
 CREATE FUNCTION ratio_alpha(
   a double precision,
@@ -248,12 +280,19 @@ CREATE FUNCTION ratio_alpha(
     WHEN b IS NULL THEN b_null
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_add(a, b, c, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_add(a, b, c, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_add(a, b, c, scale), round_to)
+    WHEN is_absolute AND round_to IS NOT NULL
+     THEN round(
+       scaled_fused_absolute_divide_add(a, b, c, scale),
+       round_to
+     )
+    WHEN is_absolute
+     THEN scaled_fused_absolute_divide_add(a, b, c, scale)
+    WHEN round_to IS NOT NULL
+     THEN round(scaled_fused_divide_add(a, b, c, scale), round_to)
     ELSE scaled_fused_divide_add(a, b, c, scale)
   END
 $$ LANGUAGE SQL;
+
 
 CREATE FUNCTION ratio_sigma(
   a double precision,
@@ -280,9 +319,18 @@ CREATE FUNCTION ratio_sigma(
     WHEN b IS NULL THEN b_null
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
-    WHEN is_absolute AND round_to IS NOT NULL THEN round(scaled_fused_absolute_divide_subtract(a, b, c, scale), round_to)
-    WHEN is_absolute THEN scaled_fused_absolute_divide_subtract(a, b, c, scale)
-    WHEN round_to IS NOT NULL THEN round(scaled_fused_divide_subtract(a, b, c, scale), round_to)
+    WHEN is_absolute AND round_to IS NOT NULL
+     THEN round(
+       scaled_fused_absolute_divide_subtract(a, b, c, scale),
+       round_to
+     )
+    WHEN is_absolute
+     THEN scaled_fused_absolute_divide_subtract(a, b, c, scale)
+    WHEN round_to IS NOT NULL
+     THEN round(
+       scaled_fused_divide_subtract(a, b, c, scale),
+       round_to
+     )
     ELSE scaled_fused_divide_subtract(a, b, c, scale)
   END
 $$ LANGUAGE SQL;

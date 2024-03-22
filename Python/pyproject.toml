@@ -1,0 +1,54 @@
+# pyproject.toml
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ratio-delta"
+version = "1.0.0"
+description = "Add functions for variants of a common arithmetic operation"
+readme = "README.md"
+authors = [
+    { name = "Laurent Lyaudet", email = "laurent.lyaudet@gmail.com" },
+]
+license = { file = "../COPYING.LESSER" }
+classifiers = [
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = [
+    "Python",
+    "fused-divide-add",
+    "fused-divide-subract",
+    "fused-divide-increment",
+    "fused-divide-decrement",
+    "ratio-alpha",
+    "ratio-sigma",
+    "ratio-iota",
+    "ratio-delta",
+]
+dependencies = []
+requires-python = ">=3.5"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "mypy",
+    "pylint",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/LLyaudet/RatioDelta"
+"Bug Tracker" = "https://github.com/LLyaudet/RatioDelta/issues"
+
+[tool.black]
+line-length = 70
+
+[tool.isort]
+profile = "black"
+line_length = 70
+

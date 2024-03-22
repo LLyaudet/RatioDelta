@@ -1,15 +1,21 @@
 # RatioDelta
 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)
+[![pypi-version](https://img.shields.io/pypi/v/ratio-delta.svg)](https://pypi.org/project/ratio-delta/)
+[![Downloads](https://img.shields.io/pypi/dm/ratio-delta)](https://pypistats.org/packages/ratio-delta)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
+[![CodeFactor](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main)](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main)
+[![CodeClimateMaintainability](https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability)](https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c)](https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ![GitHub top language](https://img.shields.io/github/languages/top/llyaudet/RatioDelta)
 ![GitHub License](https://img.shields.io/github/license/llyaudet/RatioDelta)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/llyaudet/RatioDelta)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/LLyaudet)](https://github.com/sponsors/LLyaudet)
 
 |     **An unknown? but somewhat common arithmetic operation**     |
-
-This library is available for the following languages:
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta/Python/)
-
 
 In accounting, it is common to compute (a/b - 1),
 or (a/b - 1) * 100 if you want percents.
