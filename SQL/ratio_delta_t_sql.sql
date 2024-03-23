@@ -1,22 +1,28 @@
 -- This file is part of RatioDelta library.
-
+--
 -- RatioDelta is free software:
 -- you can redistribute it and/or modify
 -- it under the terms of the GNU Lesser General Public License
 -- as published by the Free Software Foundation,
 -- either version 3 of the License, or
 -- (at your option) any later version.
-
+--
 -- RatioDelta is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR @a PARTICULAR PURPOSE.  See the
 -- GNU Lesser General Public License for more details.
-
+--
 -- You should have received @a copy of the
 -- GNU Lesser General Public License along with RatioDelta.
 -- If not, see <http://www.gnu.org/licenses/>.
-
+--
 -- ©Copyright 2023-2024 Laurent Lyaudet
+
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
+SET NOCOUNT ON;
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+GO
 
 
 -- It should be inlined.
@@ -315,7 +321,7 @@ BEGIN
        @round_to
      )
     ELSE dbo.scaled_fused_divide_increment(@a, @b, @scale)
-  END
+  END;
 END;
 GO
 
@@ -352,7 +358,7 @@ BEGIN
        @round_to
      )
     ELSE dbo.scaled_fused_divide_decrement(@a, @b, @scale)
-  END
+  END;
 END;
 GO
 
@@ -398,7 +404,7 @@ BEGIN
        @round_to
      )
     ELSE dbo.scaled_fused_divide_add(@a, @b, @c, @scale)
-  END
+  END;
 END;
 GO
 
@@ -446,7 +452,7 @@ BEGIN
        @round_to
      )
     ELSE dbo.scaled_fused_divide_subtract(@a, @b, @c, @scale)
-  END
+  END;
 END;
 GO
 
