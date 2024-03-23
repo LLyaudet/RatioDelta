@@ -30,7 +30,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b + @c)
+  RETURN (@a/@b + @c);
 END;
 GO
 
@@ -54,7 +54,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b - @c)
+  RETURN (@a/@b - @c);
 END;
 GO
 
@@ -70,7 +70,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b + @c)
+  RETURN abs(@a/@b + @c);
 END;
 GO
 
@@ -86,7 +86,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b - @c)
+  RETURN abs(@a/@b - @c);
 END;
 GO
 
@@ -103,7 +103,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b + @c) * @scale
+  RETURN (@a/@b + @c) * @scale;
 END;
 GO
 
@@ -120,7 +120,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b - @c) * @scale
+  RETURN (@a/@b - @c) * @scale;
 END;
 GO
 
@@ -137,7 +137,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b + @c) * @scale
+  RETURN abs(@a/@b + @c) * @scale;
 END;
 GO
 
@@ -154,7 +154,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b - @c) * @scale
+  RETURN abs(@a/@b - @c) * @scale;
 END;
 GO
 
@@ -169,7 +169,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b + 1)
+  RETURN (@a/@b + 1);
 END;
 GO
 
@@ -184,7 +184,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b - 1)
+  RETURN (@a/@b - 1);
 END;
 GO
 
@@ -199,7 +199,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b + 1)
+  RETURN abs(@a/@b + 1);
 END;
 GO
 
@@ -214,7 +214,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b - 1)
+  RETURN abs(@a/@b - 1);
 END;
 GO
 
@@ -230,7 +230,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b + 1) * @scale
+  RETURN (@a/@b + 1) * @scale;
 END;
 GO
 
@@ -246,7 +246,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN (@a/@b - 1) * @scale
+  RETURN (@a/@b - 1) * @scale;
 END;
 GO
 
@@ -262,7 +262,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b + 1) * @scale
+  RETURN abs(@a/@b + 1) * @scale;
 END;
 GO
 
@@ -278,7 +278,7 @@ WITH SCHEMABINDING,
   RETURNS NULL ON NULL INPUT
 AS
 BEGIN
-  RETURN abs(@a/@b - 1) * @scale
+  RETURN abs(@a/@b - 1) * @scale;
 END;
 GO
 
@@ -288,7 +288,7 @@ CREATE FUNCTION ratio_iota(
   @b FLOAT(53),
   @is_absolute BIT = 0,
   @scale FLOAT(53) = 1,
-  @round_to smallint = NULL,
+  @round_to SMALLINT = NULL,
   @both_null FLOAT(53) = NULL,
   @a_null FLOAT(53) = NULL,
   @b_null FLOAT(53) = NULL,
@@ -325,7 +325,7 @@ CREATE FUNCTION ratio_delta(
   @b FLOAT(53),
   @is_absolute BIT = 0,
   @scale FLOAT(53) = 1,
-  @round_to smallint = NULL,
+  @round_to SMALLINT = NULL,
   @both_null FLOAT(53) = NULL,
   @a_null FLOAT(53) = NULL,
   @b_null FLOAT(53) = NULL,
@@ -363,7 +363,7 @@ CREATE FUNCTION ratio_alpha(
   @c FLOAT(53),
   @is_absolute BIT = 0,
   @scale FLOAT(53) = 1,
-  @round_to smallint = NULL,
+  @round_to SMALLINT = NULL,
   @all_null FLOAT(53) = NULL,
   @a_b_null FLOAT(53) = NULL,
   @a_c_null FLOAT(53) = NULL,
@@ -409,7 +409,7 @@ CREATE FUNCTION ratio_sigma(
   @c FLOAT(53),
   @is_absolute BIT = 0,
   @scale FLOAT(53) = 1,
-  @round_to smallint = NULL,
+  @round_to SMALLINT = NULL,
   @all_null FLOAT(53) = NULL,
   @a_b_null FLOAT(53) = NULL,
   @a_c_null FLOAT(53) = NULL,
