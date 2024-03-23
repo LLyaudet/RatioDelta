@@ -25,7 +25,11 @@ CREATE FUNCTION fused_divide_add(
   a double precision,
   b double precision,
   c double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b + c)
 $$ LANGUAGE SQL;
 
@@ -36,7 +40,11 @@ CREATE FUNCTION fused_divide_subtract(
   a double precision,
   b double precision,
   c double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b - c)
 $$ LANGUAGE SQL;
 
@@ -47,7 +55,11 @@ CREATE FUNCTION fused_absolute_divide_add(
   a double precision,
   b double precision,
   c double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b + c)
 $$ LANGUAGE SQL;
 
@@ -58,7 +70,11 @@ CREATE FUNCTION fused_absolute_divide_subtract(
   a double precision,
   b double precision,
   c double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b - c)
 $$ LANGUAGE SQL;
 
@@ -70,7 +86,11 @@ CREATE FUNCTION scaled_fused_divide_add(
   b double precision,
   c double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b + c) * scale
 $$ LANGUAGE SQL;
 
@@ -82,7 +102,11 @@ CREATE FUNCTION scaled_fused_divide_subtract(
   b double precision,
   c double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b - c) * scale
 $$ LANGUAGE SQL;
 
@@ -94,7 +118,11 @@ CREATE FUNCTION scaled_fused_absolute_divide_add(
   b double precision,
   c double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b + c) * scale
 $$ LANGUAGE SQL;
 
@@ -106,7 +134,11 @@ CREATE FUNCTION scaled_fused_absolute_divide_subtract(
   b double precision,
   c double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b - c) * scale
 $$ LANGUAGE SQL;
 
@@ -116,7 +148,11 @@ $$ LANGUAGE SQL;
 CREATE FUNCTION fused_divide_increment(
   a double precision,
   b double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b + 1)
 $$ LANGUAGE SQL;
 
@@ -126,7 +162,11 @@ $$ LANGUAGE SQL;
 CREATE FUNCTION fused_divide_decrement(
   a double precision,
   b double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b - 1)
 $$ LANGUAGE SQL;
 
@@ -136,7 +176,11 @@ $$ LANGUAGE SQL;
 CREATE FUNCTION fused_absolute_divide_increment(
   a double precision,
   b double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b + 1)
 $$ LANGUAGE SQL;
 
@@ -146,7 +190,11 @@ $$ LANGUAGE SQL;
 CREATE FUNCTION fused_absolute_divide_decrement(
   a double precision,
   b double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b - 1)
 $$ LANGUAGE SQL;
 
@@ -157,7 +205,11 @@ CREATE FUNCTION scaled_fused_divide_increment(
   a double precision,
   b double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b + 1) * scale
 $$ LANGUAGE SQL;
 
@@ -168,7 +220,11 @@ CREATE FUNCTION scaled_fused_divide_decrement(
   a double precision,
   b double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT (a/b - 1) * scale
 $$ LANGUAGE SQL;
 
@@ -179,7 +235,11 @@ CREATE FUNCTION scaled_fused_absolute_divide_increment(
   a double precision,
   b double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b + 1) * scale
 $$ LANGUAGE SQL;
 
@@ -190,7 +250,11 @@ CREATE FUNCTION scaled_fused_absolute_divide_decrement(
   a double precision,
   b double precision,
   scale double precision
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+STRICT
+PARALLEL SAFE
+AS $$
   SELECT abs(a/b - 1) * scale
 $$ LANGUAGE SQL;
 
@@ -200,26 +264,44 @@ CREATE FUNCTION ratio_iota(
   b double precision,
   is_absolute boolean DEFAULT FALSE,
   scale double precision DEFAULT 1,
-  round_to smallint DEFAULT NULL,
+  round_to integer DEFAULT NULL,
   both_null double precision DEFAULT NULL,
   a_null double precision DEFAULT NULL,
   b_null double precision DEFAULT NULL,
   b_zero double precision DEFAULT NULL
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+PARALLEL SAFE
+AS $$
   SELECT CASE
     WHEN a IS NULL AND b IS NULL THEN both_null
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
     WHEN is_absolute AND round_to IS NOT NULL
-     THEN round(
-       scaled_fused_absolute_divide_increment(a, b, scale),
-       round_to
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_absolute_divide_increment(a, b, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
      )
     WHEN is_absolute
      THEN scaled_fused_absolute_divide_increment(a, b, scale)
     WHEN round_to IS NOT NULL
-     THEN round(scaled_fused_divide_increment(a, b, scale), round_to)
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_divide_increment(a, b, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
+     )
     ELSE scaled_fused_divide_increment(a, b, scale)
   END
 $$ LANGUAGE SQL;
@@ -230,26 +312,44 @@ CREATE FUNCTION ratio_delta(
   b double precision,
   is_absolute boolean DEFAULT FALSE,
   scale double precision DEFAULT 1,
-  round_to smallint DEFAULT NULL,
+  round_to integer DEFAULT NULL,
   both_null double precision DEFAULT NULL,
   a_null double precision DEFAULT NULL,
   b_null double precision DEFAULT NULL,
   b_zero double precision DEFAULT NULL
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+PARALLEL SAFE
+AS $$
   SELECT CASE
     WHEN a IS NULL AND b IS NULL THEN both_null
     WHEN a IS NULL THEN a_null
     WHEN b IS NULL THEN b_null
     WHEN b = 0 THEN b_zero
     WHEN is_absolute AND round_to IS NOT NULL
-     THEN round(
-       scaled_fused_absolute_divide_decrement(a, b, scale),
-       round_to
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_absolute_divide_decrement(a, b, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
      )
     WHEN is_absolute
      THEN scaled_fused_absolute_divide_decrement(a, b, scale)
     WHEN round_to IS NOT NULL
-     THEN round(scaled_fused_divide_decrement(a, b, scale), round_to)
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_divide_decrement(a, b, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
+     )
     ELSE scaled_fused_divide_decrement(a, b, scale)
   END
 $$ LANGUAGE SQL;
@@ -261,7 +361,7 @@ CREATE FUNCTION ratio_alpha(
   c double precision,
   is_absolute boolean DEFAULT FALSE,
   scale double precision DEFAULT 1,
-  round_to smallint DEFAULT NULL,
+  round_to integer DEFAULT NULL,
   all_null double precision DEFAULT NULL,
   a_b_null double precision DEFAULT NULL,
   a_c_null double precision DEFAULT NULL,
@@ -270,7 +370,10 @@ CREATE FUNCTION ratio_alpha(
   b_null double precision DEFAULT NULL,
   c_null double precision DEFAULT NULL,
   b_zero double precision DEFAULT NULL
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+PARALLEL SAFE
+AS $$
   SELECT CASE
     WHEN a IS NULL AND b IS NULL AND c IS NULL THEN all_null
     WHEN a IS NULL AND b IS NULL THEN a_b_null
@@ -281,14 +384,26 @@ CREATE FUNCTION ratio_alpha(
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
     WHEN is_absolute AND round_to IS NOT NULL
-     THEN round(
-       scaled_fused_absolute_divide_add(a, b, c, scale),
-       round_to
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_absolute_divide_add(a, b, c, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
      )
     WHEN is_absolute
      THEN scaled_fused_absolute_divide_add(a, b, c, scale)
     WHEN round_to IS NOT NULL
-     THEN round(scaled_fused_divide_add(a, b, c, scale), round_to)
+     THEN CAST(
+       round(
+         CAST(scaled_fused_divide_add(a, b, c, scale) AS numeric),
+         round_to
+       )
+       AS double precision
+     )
     ELSE scaled_fused_divide_add(a, b, c, scale)
   END
 $$ LANGUAGE SQL;
@@ -300,7 +415,7 @@ CREATE FUNCTION ratio_sigma(
   c double precision,
   is_absolute boolean DEFAULT FALSE,
   scale double precision DEFAULT 1,
-  round_to smallint DEFAULT NULL,
+  round_to integer DEFAULT NULL,
   all_null double precision DEFAULT NULL,
   a_b_null double precision DEFAULT NULL,
   a_c_null double precision DEFAULT NULL,
@@ -309,7 +424,10 @@ CREATE FUNCTION ratio_sigma(
   b_null double precision DEFAULT NULL,
   c_null double precision DEFAULT NULL,
   b_zero double precision DEFAULT NULL
-) RETURNS double precision AS $$
+) RETURNS double precision
+IMMUTABLE
+PARALLEL SAFE
+AS $$
   SELECT CASE
     WHEN a IS NULL AND b IS NULL AND c IS NULL THEN all_null
     WHEN a IS NULL AND b IS NULL THEN a_b_null
@@ -320,17 +438,33 @@ CREATE FUNCTION ratio_sigma(
     WHEN c IS NULL THEN c_null
     WHEN b = 0 THEN b_zero
     WHEN is_absolute AND round_to IS NOT NULL
-     THEN round(
-       scaled_fused_absolute_divide_subtract(a, b, c, scale),
-       round_to
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_absolute_divide_subtract(a, b, c, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
      )
     WHEN is_absolute
      THEN scaled_fused_absolute_divide_subtract(a, b, c, scale)
     WHEN round_to IS NOT NULL
-     THEN round(
-       scaled_fused_divide_subtract(a, b, c, scale),
-       round_to
+     THEN CAST(
+       round(
+         CAST(
+           scaled_fused_divide_subtract(a, b, c, scale)
+           AS numeric
+         ),
+         round_to
+       )
+       AS double precision
      )
     ELSE scaled_fused_divide_subtract(a, b, c, scale)
   END
 $$ LANGUAGE SQL;
+
+-- Test with:
+-- SELECT ratio_alpha(1,1,1);
+

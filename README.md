@@ -3,12 +3,21 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/llyaudet/RatioDelta)
 ![GitHub License](https://img.shields.io/github/license/llyaudet/RatioDelta)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/llyaudet/RatioDelta)
+[![CodeFactor](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main)](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main)
+[![CodeClimateMaintainability](https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability)](https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c)](https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/LLyaudet)](https://github.com/sponsors/LLyaudet)
 
 |     **An unknown? but somewhat common arithmetic operation**     |
 
 This library is available for the following languages:
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta//tree/main/Python)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta/tree/main/Python)
+[![SQL-A](https://img.shields.io/badge/SQL-available-blue)](https://github.com/LLyaudet/RatioDelta/tree/main/SQL)
+[![SQL-PLPGSQL](https://img.shields.io/badge/SQL-PLPGSQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_plpgsql.sql)
+[![SQL-PGSQL](https://img.shields.io/badge/SQL-PGSQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_pg_sql.sql)
+[![SQL-MariaDB](https://img.shields.io/badge/SQL-MariaDB-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql)
+[![SQL-MySQL](https://img.shields.io/badge/SQL-MySQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql)
+[![SQL-T-SQL](https://img.shields.io/badge/SQL-Transact_SQL(SQL_Server)-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_t_sql.sql)
 
 
 In accounting, it is common to compute (a/b - 1),
