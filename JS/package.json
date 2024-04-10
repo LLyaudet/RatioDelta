@@ -1,7 +1,7 @@
 {
   "name": "ratio-delta",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add functions for variants of a common arithmetic operation",
   "main": "index.js",
   "scripts": {

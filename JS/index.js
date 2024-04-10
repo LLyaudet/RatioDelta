@@ -191,6 +191,7 @@ export function ratio_iota(
   if(b === 0){
     return b_zero;
   }
+  let result = null;
   if(is_absolute){
     result = scaled_fused_absolute_divide_increment(a, b, scale);
   }
@@ -231,6 +232,7 @@ export function ratio_delta(
   if(b === 0){
     return b_zero;
   }
+  let result = null;
   if(is_absolute){
     result = scaled_fused_absolute_divide_decrement(a, b, scale);
   }
@@ -288,6 +290,7 @@ export function ratio_alpha(
   if(b === 0){
     return b_zero;
   }
+  let result = null;
   if(is_absolute){
     result = scaled_fused_absolute_divide_add(a, b, c, scale);
   }
@@ -345,6 +348,7 @@ export function ratio_sigma(
   if(b === 0){
     return b_zero;
   }
+  let result = null;
   if(is_absolute){
     result = scaled_fused_absolute_divide_subtract(a, b, c, scale);
   }
