@@ -21,7 +21,7 @@ If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-function fused_divide_add(a, b, c){
+export function fused_divide_add(a, b, c){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -30,7 +30,7 @@ function fused_divide_add(a, b, c){
 }
 
 
-function fused_divide_subtract(a, b, c){
+export function fused_divide_subtract(a, b, c){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -39,7 +39,7 @@ function fused_divide_subtract(a, b, c){
 }
 
 
-function fused_absolute_divide_add(a, b, c){
+export function fused_absolute_divide_add(a, b, c){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -48,7 +48,7 @@ function fused_absolute_divide_add(a, b, c){
 }
 
 
-function fused_absolute_divide_subtract(a, b, c){
+export function fused_absolute_divide_subtract(a, b, c){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -57,7 +57,7 @@ function fused_absolute_divide_subtract(a, b, c){
 }
 
 
-function scaled_fused_divide_add(a, b, c, scale){
+export function scaled_fused_divide_add(a, b, c, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -66,7 +66,7 @@ function scaled_fused_divide_add(a, b, c, scale){
 }
 
 
-function scaled_fused_divide_subtract(a, b, c, scale){
+export function scaled_fused_divide_subtract(a, b, c, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -75,7 +75,7 @@ function scaled_fused_divide_subtract(a, b, c, scale){
 }
 
 
-function scaled_fused_absolute_divide_add(a, b, c, scale){
+export function scaled_fused_absolute_divide_add(a, b, c, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -84,7 +84,7 @@ function scaled_fused_absolute_divide_add(a, b, c, scale){
 }
 
 
-function scaled_fused_absolute_divide_subtract(a, b, c, scale){
+export function scaled_fused_absolute_divide_subtract(a, b, c, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -93,7 +93,7 @@ function scaled_fused_absolute_divide_subtract(a, b, c, scale){
 }
 
 
-function fused_divide_increment(a, b){
+export function fused_divide_increment(a, b){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -102,7 +102,7 @@ function fused_divide_increment(a, b){
 }
 
 
-function fused_divide_decrement(a, b){
+export function fused_divide_decrement(a, b){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -111,7 +111,7 @@ function fused_divide_decrement(a, b){
 }
 
 
-function fused_absolute_divide_increment(a, b){
+export function fused_absolute_divide_increment(a, b){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -120,7 +120,7 @@ function fused_absolute_divide_increment(a, b){
 }
 
 
-function fused_absolute_divide_decrement(a, b){
+export function fused_absolute_divide_decrement(a, b){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -129,7 +129,7 @@ function fused_absolute_divide_decrement(a, b){
 }
 
 
-function scaled_fused_divide_increment(a, b, scale){
+export function scaled_fused_divide_increment(a, b, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -138,7 +138,7 @@ function scaled_fused_divide_increment(a, b, scale){
 }
 
 
-function scaled_fused_divide_decrement(a, b, scale){
+export function scaled_fused_divide_decrement(a, b, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -147,7 +147,7 @@ function scaled_fused_divide_decrement(a, b, scale){
 }
 
 
-function scaled_fused_absolute_divide_increment(a, b, scale){
+export function scaled_fused_absolute_divide_increment(a, b, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -156,7 +156,7 @@ function scaled_fused_absolute_divide_increment(a, b, scale){
 }
 
 
-function scaled_fused_absolute_divide_decrement(a, b, scale){
+export function scaled_fused_absolute_divide_decrement(a, b, scale){
   /*
   It should be inlined.
   Maybe one day it will be a single assembly operation.
@@ -165,7 +165,7 @@ function scaled_fused_absolute_divide_decrement(a, b, scale){
 }
 
 
-function ratio_iota(
+export function ratio_iota(
   a,
   b,
   is_absolute = false,
@@ -191,7 +191,7 @@ function ratio_iota(
   if(b === 0){
     return b_zero;
   }
-  if{is_absolute){
+  if(is_absolute){
     result = scaled_fused_absolute_divide_increment(a, b, scale);
   }
   else{
@@ -205,7 +205,7 @@ function ratio_iota(
 }
 
 
-function ratio_delta(
+export function ratio_delta(
   a,
   b,
   is_absolute = false,
@@ -231,7 +231,7 @@ function ratio_delta(
   if(b === 0){
     return b_zero;
   }
-  if{is_absolute){
+  if(is_absolute){
     result = scaled_fused_absolute_divide_decrement(a, b, scale);
   }
   else{
@@ -245,7 +245,7 @@ function ratio_delta(
 }
 
 
-function ratio_alpha(
+export function ratio_alpha(
   a,
   b,
   c,
@@ -288,7 +288,7 @@ function ratio_alpha(
   if(b === 0){
     return b_zero;
   }
-  if{is_absolute){
+  if(is_absolute){
     result = scaled_fused_absolute_divide_add(a, b, c, scale);
   }
   else{
@@ -302,7 +302,7 @@ function ratio_alpha(
 }
 
 
-function ratio_sigma(
+export function ratio_sigma(
   a,
   b,
   c,
@@ -345,7 +345,7 @@ function ratio_sigma(
   if(b === 0){
     return b_zero;
   }
-  if{is_absolute){
+  if(is_absolute){
     result = scaled_fused_absolute_divide_subtract(a, b, c, scale);
   }
   else{

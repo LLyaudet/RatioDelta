@@ -11,6 +11,7 @@
 |     **An unknown? but somewhat common arithmetic operation**     |
 
 This library is available for the following languages:
+[![JS](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)](https://github.com/LLyaudet/RatioDelta/tree/main/JS)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta/tree/main/Python)
 [![SQL-A](https://img.shields.io/badge/SQL-available-blue)](https://github.com/LLyaudet/RatioDelta/tree/main/SQL)
 [![SQL-PLPGSQL](https://img.shields.io/badge/SQL-PLPGSQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_plpgsql.sql)

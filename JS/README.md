@@ -1,12 +1,9 @@
 # RatioDelta
 
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)
-[![pypi-version](https://img.shields.io/pypi/v/ratio-delta.svg)](https://pypi.org/project/ratio-delta/)
-[![Downloads](https://img.shields.io/pypi/dm/ratio-delta)](https://pypistats.org/packages/ratio-delta)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
-[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
-[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
+[![JS](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)](https://github.com/LLyaudet/RatioDelta/tree/main/JS)
+[![NPM Version](https://img.shields.io/npm/v/ratio-delta)](https://www.npmjs.com/package/ratio-delta)
+[![NPM Downloads](https://img.shields.io/npm/dm/ratio-delta)](https://npm-stat.com/charts.html?package=ratio-delta)
+[![Linting: ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=ESLint&logoColor=white)](https://github.com/eslint/eslint)
 [![CodeFactor](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main)](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main)
 [![CodeClimateMaintainability](https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability)](https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c)](https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)

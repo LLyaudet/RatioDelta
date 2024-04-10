@@ -1,10 +1,11 @@
 {
   "name": "ratio-delta",
-  "version": "0.1.0",
+  "type": "module",
+  "version": "1.0.0",
   "description": "Add functions for variants of a common arithmetic operation",
   "main": "index.js",
   "scripts": {
-    "lint": "$(npm bin)/eslint index.js",
+    "lint": "eslint index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
