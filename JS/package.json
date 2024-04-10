@@ -1,0 +1,35 @@
+{
+  "name": "ratio-delta",
+  "version": "0.1.0",
+  "description": "Add functions for variants of a common arithmetic operation",
+  "main": "index.js",
+  "scripts": {
+    "lint": "$(npm bin)/eslint index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LLyaudet/RatioDelta.git"
+  },
+  "keywords": [
+    "JS",
+    "fused-divide-add",
+    "fused-divide-subract",
+    "fused-divide-increment",
+    "fused-divide-decrement",
+    "ratio-alpha",
+    "ratio-sigma",
+    "ratio-iota",
+    "ratio-delta"
+  ],
+  "author": "Laurent Lyaudet",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/LLyaudet/RatioDelta/issues"
+  },
+  "homepage": "https://github.com/LLyaudet/RatioDelta#readme",
+  "dependencies": {
+    "eslint": "^9.0.0",
+    "@stylistic/eslint-plugin": "^1.7.0"
+  }
+}

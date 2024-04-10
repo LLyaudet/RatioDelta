@@ -360,7 +360,7 @@ for example.
 
 ## Source code
 
-The source code is available for SQL, Python, and PHP currently.
+The source code is available for many languages.
 It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
 
