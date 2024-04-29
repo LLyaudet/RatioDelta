@@ -36,7 +36,7 @@ chmod +x ./build_readme.sh
 present_sha512=`sha512sum ./build_readme.sh`
 if [[ "$present_sha512" != "$correct_sha512" ]];
 then
-  echo "build_readme.sh does not have correct sha12"
+  echo "build_readme.sh does not have correct sha512"
   echo "wanted $correct_sha512"
   echo "found $present_sha512"
   exit
@@ -52,7 +52,7 @@ echo "Running black"
 black .
 
 echo "Running pylint"
-pylint Python/src/python_none_objects/
+pylint Python/src/ratio_delta/
 
 echo "Running mypy"
 mypy .
