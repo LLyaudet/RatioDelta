@@ -414,4 +414,4 @@ what could be assembly operation in our point of view.
 
 [SQL-T-SQL-badge]: https://img.shields.io/badge/SQL-Transact_SQL(SQL_Server)-blue
 
-[SQL-T-SQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_t_sql.sqlttt
+[SQL-T-SQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_t_sql.sql

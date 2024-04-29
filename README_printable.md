@@ -441,4 +441,4 @@ SQL/ratio_delta_my_sql_or_maria_db.sql
 SQL-Transact_SQL(SQL_Server)-blue
 
 [SQL-T-SQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/\
-SQL/ratio_delta_t_sql.sqlttt
+SQL/ratio_delta_t_sql.sql
