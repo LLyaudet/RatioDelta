@@ -7,7 +7,9 @@ build-backend = "hatchling.build"
 [project]
 name = "ratio-delta"
 version = "1.0.0"
-description = "Add functions for variants of a common arithmetic operation"
+description = """\
+Add functions for variants of a common arithmetic operation\
+"""
 readme = "README.md"
 authors = [
     { name = "Laurent Lyaudet", email = "laurent.lyaudet@gmail.com" },
@@ -17,7 +19,10 @@ maintainers = [
 ]
 license = { file = "COPYING.LESSER" }
 classifiers = [
-    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    """\
+License :: OSI Approved :: \
+GNU Lesser General Public License v3 or later (LGPLv3+)\
+""",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",

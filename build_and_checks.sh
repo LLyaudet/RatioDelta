@@ -24,16 +24,16 @@
 
 echo "Building README.md"
 personal="https://raw.githubusercontent.com/LLyaudet/"
-scripts="DevOrSysAdminScripts/main/build_readme.sh"
-correct_sha512="22a1b5118dbc79193b632f554772d75a506cf958a671d48b8a185"
-correct_sha512+="138ea43e6e733c7a07ed322ae17f45d52323e7c948eae016e2a7"
-correct_sha512+="4882d798ec8f7af1b27e6bf"
+script="DevOrSysAdminScripts/main/build_readme.sh"
+correct_sha512="1081750df32198ae3835fbbe3d2d55c9b7096c2d571fadbff433e"
+correct_sha512+="51dad58d1b66b66c1378543e1ef20b78597b4b11a4b97b723911"
+correct_sha512+="ef7045870d53a68ceedd4e1"
 if [[ ! -f "./build_readme.sh" ]];
 then
-  wget "$personal""$scripts"
+  wget "$personal""$script"
 fi
 chmod +x ./build_readme.sh
-present_sha512=`sha512sum ./build_readme.sh`
+present_sha512=`sha512sum ./build_readme.sh | cut -f1 -d' '`
 if [[ "$present_sha512" != "$correct_sha512" ]];
 then
   echo "build_readme.sh does not have correct sha512"
@@ -59,28 +59,26 @@ mypy .
 
 shopt -s globstar
 
-too_long_code_lines() {
-  grep -r '.\{71\}' -- **/*.c
-  grep -r '.\{71\}' -- **/*.css
-  grep -r '.\{71\}' -- **/*.h
-  grep -r '.\{71\}' -- **/*.htm
-  grep -r '.\{71\}' -- **/*.html
-  grep -r '.\{71\}' -- **/*.js
-  grep -r '.\{71\}' -- **/*.json
-  grep -r '.\{71\}' -- **/*.md
-  grep -r '.\{71\}' -- **/*.php
-  grep -r '.\{71\}' -- **/*.py
-  grep -r '.\{71\}' -- **/*.sql
-  grep -r '.\{71\}' -- **/*.tex
-  grep -r '.\{71\}' -- **/*.toml
-  grep -r '.\{71\}' -- **/*.ts
-  grep -r '.\{71\}' -- **/*.txt
-  grep -r '.\{71\}' -- **/*.yml
-  grep -r '.\{71\}' -- **/COPYING
-  grep -r '.\{71\}' -- **/COPYING.LESSER
-}
-
 echo "Analyzing too long lines"
+personal="https://raw.githubusercontent.com/LLyaudet/"
+script="DevOrSysAdminScripts/main/too_long_code_lines.sh"
+correct_sha512="4f3cd19bd91bb2b258a7d705c468b69a3db7d75187c29756f7968"
+correct_sha512+="1cc7fb69e0a55439d8cd4a5c05b769960a66f03f150044b2dc4a"
+correct_sha512+="8d21b65f4f4ed84b5276c58"
+if [[ ! -f "./too_long_code_lines.sh" ]];
+then
+  wget "$personal""$script"
+fi
+chmod +x ./too_long_code_lines.sh
+present_sha512=`sha512sum ./too_long_code_lines.sh | cut -f1 -d' '`
+if [[ "$present_sha512" != "$correct_sha512" ]];
+then
+  echo "too_long_code_lines.sh does not have correct sha512"
+  echo "wanted $correct_sha512"
+  echo "found $present_sha512"
+  exit
+fi
+source ./too_long_code_lines.sh
 too_long_code_lines | grep -v "JS/node_modules/"\
   | grep -v "JS/package-lock.json"
 

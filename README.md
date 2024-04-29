@@ -1,23 +1,23 @@
 # RatioDelta
 
-![GitHub top language](https://img.shields.io/github/languages/top/llyaudet/RatioDelta)
-![GitHub License](https://img.shields.io/github/license/llyaudet/RatioDelta)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/llyaudet/RatioDelta)
-[![CodeFactor](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main)](https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main)
-[![CodeClimateMaintainability](https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability)](https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c)](https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+![GitHub-top-language-badge]
+![GitHub-license-badge]
+![GitHub-code-size-in-bytes-badge]
+[![CodeFactor-badge]][CodeFactor-package-page]
+[![CodeClimateMaintainability-badge]][CodeClimateM13y-package-page]
+[![Codacy-badge]][Codacy-package-page]
 
 |     **An unknown? but somewhat common arithmetic operation**     |
 
 This library is available for the following languages:
-[![JS](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)](https://github.com/LLyaudet/RatioDelta/tree/main/JS)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ratio-delta)](https://github.com/LLyaudet/RatioDelta/tree/main/Python)
-[![SQL-A](https://img.shields.io/badge/SQL-available-blue)](https://github.com/LLyaudet/RatioDelta/tree/main/SQL)
-[![SQL-PLPGSQL](https://img.shields.io/badge/SQL-PLPGSQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_plpgsql.sql)
-[![SQL-PGSQL](https://img.shields.io/badge/SQL-PGSQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_pg_sql.sql)
-[![SQL-MariaDB](https://img.shields.io/badge/SQL-MariaDB-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql)
-[![SQL-MySQL](https://img.shields.io/badge/SQL-MySQL-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql)
-[![SQL-T-SQL](https://img.shields.io/badge/SQL-Transact_SQL(SQL_Server)-blue)](https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_t_sql.sql)
+[![JS-badge]][JS-subtree]
+[![PyPI-python-version-badge]][Python-subtree]
+[![SQL-A-badge]][SQL-subtree]
+[![SQL-PLPGSQL-badge]][SQL-PLPGSQL-file]
+[![SQL-PGSQL-badge]][SQL-PGSQL-file]
+[![SQL-MariaDB-badge]][SQL-MariaDB-file]
+[![SQL-MySQL-badge]][SQL-MySQL-file]
+[![SQL-T-SQL-badge]][SQL-T-SQL-file]
 
 
 In accounting, it is common to compute (a/b - 1),
@@ -330,7 +330,8 @@ it may be easier to use dedicated hardware if it exists one day.
 ## Voltage divider, and beyond?
 
 If we look at ratio-iota (a/b) + 1,
-when you have a voltage divider (<https://en.wikipedia.org/wiki/Voltage_divider>)
+when you have a voltage divider
+(<https://en.wikipedia.org/wiki/Voltage_divider>)
 with two resistors,
 the coefficient applied to tension is (Z2/(Z1+Z2)) = 1 / (Z1/Z2 + 1).
 Thus, we could, but probably should not, add:
@@ -364,3 +365,53 @@ The source code is available for many languages.
 It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
 
+
+[GitHub-top-language-badge]: https://img.shields.io/github/languages/top/llyaudet/RatioDelta
+
+[GitHub-license-badge]: https://img.shields.io/github/license/llyaudet/RatioDelta
+
+[GitHub-code-size-in-bytes-badge]: https://img.shields.io/github/languages/code-size/llyaudet/RatioDelta
+
+[CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main
+
+[CodeFactor-package-page]: https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main
+
+[CodeClimateMaintainability-badge]: https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability
+
+[CodeClimateM13y-package-page]: https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability
+
+[Codacy-badge]: https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c
+
+[Codacy-package-page]: https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+
+[JS-badge]: https://img.shields.io/badge/logo-javascript-blue?logo=javascript
+
+[JS-subtree]: https://github.com/LLyaudet/RatioDelta/tree/main/JS
+
+[PyPI-python-version-badge]: https://img.shields.io/pypi/pyversions/ratio-delta
+
+[Python-subtree]: https://github.com/LLyaudet/RatioDelta/tree/main/Python
+
+[SQL-A-badge]: https://img.shields.io/badge/SQL-available-blue
+
+[SQL-subtree]: https://github.com/LLyaudet/RatioDelta/tree/main/SQL
+
+[SQL-PLPGSQL-badge]: https://img.shields.io/badge/SQL-PLPGSQL-blue
+
+[SQL-PLPGSQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_plpgsql.sql
+
+[SQL-PGSQL-badge]: https://img.shields.io/badge/SQL-PGSQL-blue
+
+[SQL-PGSQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_pg_sql.sql
+
+[SQL-MariaDB-badge]: https://img.shields.io/badge/SQL-MariaDB-blue
+
+[SQL-MariaDB-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql
+
+[SQL-MySQL-badge]: https://img.shields.io/badge/SQL-MySQL-blue
+
+[SQL-MySQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_my_sql_or_maria_db.sql
+
+[SQL-T-SQL-badge]: https://img.shields.io/badge/SQL-Transact_SQL(SQL_Server)-blue
+
+[SQL-T-SQL-file]: https://github.com/LLyaudet/RatioDelta/blob/main/SQL/ratio_delta_t_sql.sqlttt

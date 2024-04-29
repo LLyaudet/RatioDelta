@@ -1,18 +1,24 @@
 """
 This file is part of RatioDelta library.
 
-RatioDelta is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+RatioDelta is free software:
+you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License
+as published by the Free Software Foundation,
+either version 3 of the License,
+or (at your option) any later version.
 
-RatioDelta is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
-GNU Lesser General Public License for more details.
+RatioDelta is distributed in the hope
+that it will be useful,
+but WITHOUT ANY WARRANTY;
+without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU Lesser General Public License
-along with RatioDelta.    If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of
+the GNU Lesser General Public License
+along with RatioDelta.
+If not, see <http://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2024 Laurent Lyaudet
 """
@@ -29,6 +35,7 @@ def fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return a / b + c
 
 
@@ -41,6 +48,7 @@ def fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return a / b - c
 
 
@@ -53,6 +61,7 @@ def fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b + c)
 
 
@@ -65,6 +74,7 @@ def fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b - c)
 
 
@@ -78,6 +88,7 @@ def scaled_fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return (a / b + c) * scale
 
 
@@ -91,6 +102,7 @@ def scaled_fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return (a / b - c) * scale
 
 
@@ -104,6 +116,7 @@ def scaled_fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b + c) * scale
 
 
@@ -117,6 +130,7 @@ def scaled_fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b - c) * scale
 
 
@@ -128,6 +142,7 @@ def fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return a / b + 1
 
 
@@ -139,6 +154,7 @@ def fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return a / b - 1
 
 
@@ -150,6 +166,7 @@ def fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b + 1)
 
 
@@ -161,6 +178,7 @@ def fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b - 1)
 
 
@@ -173,6 +191,7 @@ def scaled_fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return (a / b + 1) * scale
 
 
@@ -185,6 +204,7 @@ def scaled_fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return (a / b - 1) * scale
 
 
@@ -197,6 +217,7 @@ def scaled_fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b + 1) * scale
 
 
@@ -209,6 +230,7 @@ def scaled_fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
+
     return abs(a / b - 1) * scale
 
 
@@ -227,6 +249,7 @@ def ratio_iota(
     """
     Divide and increment, and more if affinity.
     """
+
     if a is None:
         if b is None:
             return both_null
@@ -259,6 +282,7 @@ def ratio_delta(
     """
     Divide and decrement, and more if affinity.
     """
+
     if a is None:
         if b is None:
             return both_null
@@ -296,6 +320,7 @@ def ratio_alpha(
     """
     Divide and add, and more if affinity.
     """
+
     if a is None:
         if b is None:
             if c is None:
@@ -341,6 +366,7 @@ def ratio_sigma(
     """
     Divide and subtract, and more if affinity.
     """
+
     if a is None:
         if b is None:
             if c is None:

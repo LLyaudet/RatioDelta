@@ -219,8 +219,10 @@ for (signed) relative error:
 - <https://www.postgresql.org/docs/current/functions-math.html>
 - <https://mariadb.com/kb/en/numeric-functions/>
 - <https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html>
-- <https://docs.oracle.com/cd/E49933_01/server.770/es_eql/src/ceql_functions_numeric.html>
-- <https://learn.microsoft.com/en-us/sql/odbc/reference/appendixes/numeric-functions?view=sql-server-ver16>
+- <https://docs.oracle.com/cd/E49933_01/server.770/es_eql/src/\
+ceql_functions_numeric.html>
+- <https://learn.microsoft.com/en-us/sql/odbc/reference/appendixes/\
+numeric-functions?view=sql-server-ver16>
 
 There also does not seem to have any CPU architecture
 that has instructions for (signed) relative error.
@@ -305,7 +307,10 @@ has been addressed in academic papers on fused divide-add:
 - <https://ieeexplore.ieee.org/abstract/document/7280029>
 
 It was already envisionned in 1994:
-- <https://www.researchgate.net/profile/Michael-Flynn-7/publication/3043776_Design_issues_in_division_and_other_floating-point_operations/links/5467be1a0cf2f5eb18036e1e/Design-issues-in-division-and-other-floating-point-operations.pdf>
+- <https://www.researchgate.net/profile/Michael-Flynn-7/publication/\
+3043776_Design_issues_in_division_and_other_floating-point_operations\
+/links/5467be1a0cf2f5eb18036e1e/\
+Design-issues-in-division-and-other-floating-point-operations.pdf>
 
 But we could not check if someone linked explicitely
 relative error with fused divide-add.
@@ -318,7 +323,8 @@ and we do not have access to most of full-texts on the subject.)
 But it does not seem to be in current Instruction Set Architectures:
 
 - <https://cdrdv2.intel.com/v1/dl/getContent/671110>
-- <https://developer.arm.com/documentation/ddi0602/2023-03/SIMD-FP-Instructions?lang=en>
+- <https://developer.arm.com/documentation/ddi0602/2023-03/\
+SIMD-FP-Instructions?lang=en>
 
 With dedicated function in software,
 it may be easier to use dedicated hardware if it exists one day.
@@ -344,7 +350,8 @@ And if we look at the variable offset versions of it:
 
 we can see the fused multiply-add a + bc = bc + a,
 but we cannot see the fused multiply-subtract a - bc != bc - a
-<https://www.ibm.com/docs/en/aix/7.1?topic=set-fmsub-fms-floating-multiply-subtract-instruction>.
+<https://www.ibm.com/docs/en/aix/7.1?\
+topic=set-fmsub-fms-floating-multiply-subtract-instruction>.
 We do not know if there may be uses
 for fused multiply-subtract of type 2 a - bc
 on top of fused multiply-subtract of type 1 bc - a.
@@ -352,7 +359,8 @@ on top of fused multiply-subtract of type 1 bc - a.
 Other uses of ratio-iota appears
 with differential and operational amplifiers,
 see
-<https://www.electronique-et-informatique.fr/anglais/Amplificateur_differentiel.php>
+<https://www.electronique-et-informatique.fr/anglais\
+/Amplificateur_differentiel.php>
 for example.
 
 ## Source code
@@ -362,46 +370,65 @@ It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
 
 
-[PyPI-python-version-badge]: https://img.shields.io/pypi/pyversions/ratio-delta
+[PyPI-python-version-badge]: https://img.shields.io/pypi/pyversions/\
+ratio-delta
 
-[PyPI-version-badge]: https://img.shields.io/pypi/v/ratio-delta.svg
+[PyPI-version-badge]: https://img.shields.io/pypi/v/\
+ratio-delta.svg
 
-[PyPI-package-page]: https://pypi.org/project/ratio-delta/
+[PyPI-package-page]: https://pypi.org/project/\
+ratio-delta/
 
-[Downloads-badge]: https://img.shields.io/pypi/dm/ratio-delta
+[Downloads-badge]: https://img.shields.io/pypi/dm/\
+ratio-delta
 
-[PyPIStats-package-page]: https://pypistats.org/packages/ratio-delta
+[PyPIStats-package-page]: https://pypistats.org/packages/\
+ratio-delta
 
-[Code-style:black:badge]: https://img.shields.io/badge/code%20style-black-000000.svg
+[Code-style:black:badge]: https://img.shields.io/badge/\
+code%20style-black-000000.svg
 
 [Black-GitHub.com]: https://github.com/psf/black
 
-[Imports:isort:badge]: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+[Imports:isort:badge]: https://img.shields.io/badge/\
+%20imports-isort-%231674b1?style=flat&labelColor=ef8336
 
 [Isort-GitHub.io]: https://pycqa.github.io/isort/
 
-[Typecheck:mypy:badge]: https://www.mypy-lang.org/static/mypy_badge.svg
+[Typecheck:mypy:badge]: https://www.mypy-lang.org/static/\
+mypy_badge.svg
 
 [Typecheck-mypy-lang.org]: https://mypy-lang.org/
 
-[Linting:pylint:badge]: https://img.shields.io/badge/linting-pylint-yellowgreen
+[Linting:pylint:badge]: https://img.shields.io/badge/\
+linting-pylint-yellowgreen
 
 [Pylint-GitHub.com]: https://github.com/pylint-dev/pylint
 
-[CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/RatioDelta/badge/main
+[CodeFactor-badge]: https://www.codefactor.io/repository/github/\
+llyaudet/RatioDelta/badge/main
 
-[CodeFactor-package-page]: https://www.codefactor.io/repository/github/llyaudet/RatioDelta/overview/main
+[CodeFactor-package-page]: https://www.codefactor.io/repository/\
+github/llyaudet/RatioDelta/overview/main
 
-[CodeClimateMaintainability-badge]: https://api.codeclimate.com/v1/badges/23218bfc6b7b7dd5c2aa/maintainability
+[CodeClimateMaintainability-badge]: https://api.codeclimate.com/v1/\
+badges/23218bfc6b7b7dd5c2aa/maintainability
 
-[CodeClimateM13y-package-page]: https://codeclimate.com/github/LLyaudet/RatioDelta/maintainability
+[CodeClimateM13y-package-page]: https://codeclimate.com/github/\
+LLyaudet/RatioDelta/maintainability
 
-[Codacy-badge]: https://app.codacy.com/project/badge/Grade/d4c03e8e52194c1fb3fb51bb58c4f54c
+[Codacy-badge]: https://app.codacy.com/project/badge/Grade/\
+d4c03e8e52194c1fb3fb51bb58c4f54c
 
-[Codacy-package-page]: https://app.codacy.com/gh/LLyaudet/RatioDelta/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+[Codacy-package-page]: https://app.codacy.com/gh/LLyaudet/\
+RatioDelta/dashboard?utm_source=gh\
+&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 
-[GitHub-top-language-badge]: https://img.shields.io/github/languages/top/llyaudet/RatioDelta
+[GitHub-top-language-badge]: https://img.shields.io/github/\
+languages/top/llyaudet/RatioDelta
 
-[GitHub-license-badge]: https://img.shields.io/github/license/llyaudet/RatioDelta
+[GitHub-license-badge]: https://img.shields.io/github/license/\
+llyaudet/RatioDelta
 
-[GitHub-code-size-in-bytes-badge]: https://img.shields.io/github/languages/code-size/llyaudet/RatioDelta
+[GitHub-code-size-in-bytes-badge]: https://img.shields.io/github/\
+languages/code-size/llyaudet/RatioDelta
