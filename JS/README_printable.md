@@ -369,7 +369,6 @@ The source code is available for many languages.
 It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
 
-
 [JS-badge]: https://img.shields.io/badge/logo-javascript-blue\
 ?logo=javascript
 
