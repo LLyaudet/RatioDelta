@@ -216,6 +216,7 @@ This detour from accounting to relative error via a new name
 was the opportunity to give you SQL functions for it,
 and see that no major database has a function
 for (signed) relative error:
+
 - <https://www.postgresql.org/docs/current/functions-math.html>
 - <https://mariadb.com/kb/en/numeric-functions/>
 - <https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html>
@@ -302,11 +303,13 @@ and will probably not be the last ;).
 
 For hardware, the topic of ratio-alpha and ratio-sigma
 has been addressed in academic papers on fused divide-add:
+
 - <https://ieeexplore.ieee.org/abstract/document/5451057>
 - <https://ieeexplore.ieee.org/document/5349981>
 - <https://ieeexplore.ieee.org/abstract/document/7280029>
 
 It was already envisionned in 1994:
+
 - <https://www.researchgate.net/profile/Michael-Flynn-7/publication/\
 3043776_Design_issues_in_division_and_other_floating-point_operations\
 /links/5467be1a0cf2f5eb18036e1e/\

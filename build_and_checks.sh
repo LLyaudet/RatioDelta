@@ -50,9 +50,7 @@ echo "Running mypy"
 mypy .
 
 echo "Running ESLint"
-cd JS/
-npm run lint
-cd ..
+(cd JS/ && npm run lint)
 
 shopt -s globstar
 
