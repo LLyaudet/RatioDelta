@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This file is part of RatioDelta library.
 #
 # RatioDelta is free software:
@@ -22,25 +22,17 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
+source ./wget_sha512.sh
+
+personal_github="https://raw.githubusercontent.com/LLyaudet/"
+
 echo "Building README.md"
-personal="https://raw.githubusercontent.com/LLyaudet/"
-script="DevOrSysAdminScripts/main/build_readme.sh"
-correct_sha512="1081750df32198ae3835fbbe3d2d55c9b7096c2d571fadbff433e"
-correct_sha512+="51dad58d1b66b66c1378543e1ef20b78597b4b11a4b97b723911"
-correct_sha512+="ef7045870d53a68ceedd4e1"
-if [[ ! -f "./build_readme.sh" ]];
-then
-  wget "$personal""$script"
-fi
+script="$personal_github""DevOrSysAdminScripts/main/build_readme.sh"
+correct_sha512="a7705592c14c7709f8762967f5c5d1c98d27b8ab97fe2aaa73302"
+correct_sha512+="5bf641eb48c6a0e6a38c44bcbe155777290f9b837f0d059dcedb"
+correct_sha512+="68b64d27677b3cdb663624c"
+wget_sha512 ./build_readme.sh "$script" "$correct_sha512"
 chmod +x ./build_readme.sh
-present_sha512=`sha512sum ./build_readme.sh | cut -f1 -d' '`
-if [[ "$present_sha512" != "$correct_sha512" ]];
-then
-  echo "build_readme.sh does not have correct sha512"
-  echo "wanted $correct_sha512"
-  echo "found $present_sha512"
-  exit
-fi
 ./build_readme.sh
 ./build_readme.sh JS/
 ./build_readme.sh Python/
@@ -60,25 +52,23 @@ mypy .
 shopt -s globstar
 
 echo "Analyzing too long lines"
-personal="https://raw.githubusercontent.com/LLyaudet/"
-script="DevOrSysAdminScripts/main/too_long_code_lines.sh"
-correct_sha512="4f3cd19bd91bb2b258a7d705c468b69a3db7d75187c29756f7968"
-correct_sha512+="1cc7fb69e0a55439d8cd4a5c05b769960a66f03f150044b2dc4a"
-correct_sha512+="8d21b65f4f4ed84b5276c58"
-if [[ ! -f "./too_long_code_lines.sh" ]];
-then
-  wget "$personal""$script"
-fi
-chmod +x ./too_long_code_lines.sh
-present_sha512=`sha512sum ./too_long_code_lines.sh | cut -f1 -d' '`
-if [[ "$present_sha512" != "$correct_sha512" ]];
-then
-  echo "too_long_code_lines.sh does not have correct sha512"
-  echo "wanted $correct_sha512"
-  echo "found $present_sha512"
-  exit
-fi
+script="$personal_github"
+script+="DevOrSysAdminScripts/main/too_long_code_lines.sh"
+correct_sha512="eab26337506d6fabdea227c4b584391cc4a728e6b852be2232a7e"
+correct_sha512+="4d21261eb356df77257b0ea7152c9587ce89a963732fc644caf1"
+correct_sha512+="38c21ee51932e6fa6168bf9"
+wget_sha512 ./too_long_code_lines.sh "$script" "$correct_sha512"
 source ./too_long_code_lines.sh
 too_long_code_lines | grep -v "JS/node_modules/"\
   | grep -v "JS/package-lock.json"
 
+echo "Analyzing shell scripts beginning"
+script="$personal_github"
+script+="DevOrSysAdminScripts/main/check_shell_scripts_beginning.sh"
+correct_sha512="ea0876c47a328eca96fae36f9b25a5cab01987178f23c3f71f4e8"
+correct_sha512+="b6dcf8dd24e47727265b102c3138a38d1f3bb9c116675a437190"
+correct_sha512+="8b1bc7ae24b79e9bd5a8715"
+wget_sha512 ./check_shell_scripts_beginning.sh "$script"\
+  "$correct_sha512"
+source ./check_shell_scripts_beginning.sh
+check_shell_scripts_beginning

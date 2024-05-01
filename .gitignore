@@ -1,3 +1,4 @@
 build_readme.sh
+check_shell_scripts_beginning.sh
 too_long_code_lines.sh
 
