@@ -19,7 +19,6 @@ This library is available for the following languages:
 [![SQL-MySQL-badge]][SQL-MySQL-file]
 [![SQL-T-SQL-badge]][SQL-T-SQL-file]
 
-
 In accounting, it is common to compute (a/b - 1),
 or (a/b - 1) * 100 if you want percents.
 Following Knuth's advice "Name and conquer",

@@ -364,7 +364,6 @@ The source code is available for many languages.
 It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
 
-
 [PyPI-python-version-badge]: https://img.shields.io/pypi/pyversions/ratio-delta
 
 [PyPI-version-badge]: https://img.shields.io/pypi/v/ratio-delta.svg

@@ -19,7 +19,6 @@ This library is available for the following languages:
 [![SQL-MySQL-badge]][SQL-MySQL-file]
 [![SQL-T-SQL-badge]][SQL-T-SQL-file]
 
-
 In accounting, it is common to compute (a/b - 1),
 or (a/b - 1) * 100 if you want percents.
 Following Knuth's advice "Name and conquer",
@@ -367,7 +366,6 @@ for example.
 The source code is available for many languages.
 It is quite verbose and repetitive because we wanted to explicit
 what could be assembly operation in our point of view.
-
 
 [GitHub-top-language-badge]: https://img.shields.io/github/languages/top/llyaudet/RatioDelta
 
