@@ -9,4 +9,3 @@ and the following websites to test and debug everything:
 
 As usual, <https://stackoverflow.com> was also a key ingredient,
 as is the documentation of the main DBMS.
-
