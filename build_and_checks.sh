@@ -49,6 +49,11 @@ pylint Python/src/ratio_delta/
 echo "Running mypy"
 mypy .
 
+echo "Running ESLint"
+cd JS/
+npm run lint
+cd ..
+
 shopt -s globstar
 
 echo "Analyzing too long lines"
