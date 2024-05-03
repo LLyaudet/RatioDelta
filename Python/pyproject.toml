@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ratio-delta"
-version = "1.0.1"
+version = "1.0.2"
 description = """\
 Add functions for variants of a common arithmetic operation\
 """
