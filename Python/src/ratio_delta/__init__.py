@@ -35,7 +35,6 @@ def fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return a / b + c
 
 
@@ -48,7 +47,6 @@ def fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return a / b - c
 
 
@@ -61,7 +59,6 @@ def fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b + c)
 
 
@@ -74,7 +71,6 @@ def fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b - c)
 
 
@@ -88,7 +84,6 @@ def scaled_fused_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return (a / b + c) * scale
 
 
@@ -102,7 +97,6 @@ def scaled_fused_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return (a / b - c) * scale
 
 
@@ -116,7 +110,6 @@ def scaled_fused_absolute_divide_add(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b + c) * scale
 
 
@@ -130,7 +123,6 @@ def scaled_fused_absolute_divide_subtract(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b - c) * scale
 
 
@@ -142,7 +134,6 @@ def fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return a / b + 1
 
 
@@ -154,7 +145,6 @@ def fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return a / b - 1
 
 
@@ -166,7 +156,6 @@ def fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b + 1)
 
 
@@ -178,7 +167,6 @@ def fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b - 1)
 
 
@@ -191,7 +179,6 @@ def scaled_fused_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return (a / b + 1) * scale
 
 
@@ -204,7 +191,6 @@ def scaled_fused_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return (a / b - 1) * scale
 
 
@@ -217,7 +203,6 @@ def scaled_fused_absolute_divide_increment(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b + 1) * scale
 
 
@@ -230,7 +215,6 @@ def scaled_fused_absolute_divide_decrement(
     It should be inlined.
     Maybe one day it will be a single assembly operation.
     """
-
     return abs(a / b - 1) * scale
 
 
@@ -249,7 +233,6 @@ def ratio_iota(
     """
     Divide and increment, and more if affinity.
     """
-
     if a is None:
         if b is None:
             return both_null
@@ -282,7 +265,6 @@ def ratio_delta(
     """
     Divide and decrement, and more if affinity.
     """
-
     if a is None:
         if b is None:
             return both_null
@@ -320,7 +302,6 @@ def ratio_alpha(
     """
     Divide and add, and more if affinity.
     """
-
     if a is None:
         if b is None:
             if c is None:
@@ -366,7 +347,6 @@ def ratio_sigma(
     """
     Divide and subtract, and more if affinity.
     """
-
     if a is None:
         if b is None:
             if c is None:
